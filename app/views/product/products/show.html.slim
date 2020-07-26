@@ -1,0 +1,20 @@
+p#notice = notice
+
+.form-group
+  label Nome:
+  = text_field_tag nil, @product_product.description, class: "form-control", disabled: "disabled"
+.form-group
+  label Descrição:
+  = text_field_tag nil, @product_product.about, class: "form-control", disabled: "disabled"
+.form-group
+  label Preço:
+  = text_field_tag nil, @product_product.price, class: "form-control", disabled: "disabled"
+.form-group
+  label Categoria:
+  = text_field_tag nil, @product_product.product_category.description, class: "form-control", disabled: "disabled"
+.form-group
+  label Tipo:
+  = text_field_tag nil, @product_product.product_type.description, class: "form-control", disabled: "disabled"
+
+=> link_to 'Editar', edit_product_product_path(@product_product), id: "btn_editar", class: "btn btn-primary", style: "display: inline-block"
+=< link_to 'Voltar', product_products_path, id: "btn_voltar", class: "btn btn-primary", style: "display: inline-block"
