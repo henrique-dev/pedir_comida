@@ -6,7 +6,8 @@ class Product::ProductsController < AdminController
   # GET /product/products
   # GET /product/products.json
   def index
-    @product_products = Product::Product.all
+    #@product_products = Product::Product.all
+    @product_products = Product::Product.all.order(created_at: :desc).paginate(:page => params[:page], :per_page => 10)
   end
 
   # GET /product/products/1
@@ -79,6 +80,6 @@ class Product::ProductsController < AdminController
 
     # Only allow a list of trusted parameters through.
     def product_product_params
-      params.require(:product_product).permit(:description, :about, :price, :product_category_id, :product_type_id)
+      params.require(:product_product).permit(:description, :about, :price, :product_category_id, :product_type_id, :photos => [])
     end
 end

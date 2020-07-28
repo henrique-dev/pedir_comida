@@ -2,8 +2,8 @@ h1 Editar produto
 
 == render 'form'
 
-=> link_to 'Mostrar', @product_product, id: "btn_mostrar", class: "btn btn-primary", style: "display: inline-block"
-=< link_to 'Voltar', product_products_path, id: "btn_voltar", class: "btn btn-primary", style: "display: inline-block"
+=> link_to 'Mostrar', admin_product_products_path(@product_product), id: "btn_mostrar", class: "btn btn-primary", style: "display: inline-block"
+=< link_to 'Voltar', admin_product_products_path, id: "btn_voltar", class: "btn btn-primary", style: "display: inline-block"
 
 javascript:
     let div = document.getElementsByTagName("form")[0].getElementsByClassName("actions")[0];

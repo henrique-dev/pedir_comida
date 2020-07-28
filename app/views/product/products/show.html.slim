@@ -15,6 +15,12 @@ p#notice = notice
 .form-group
   label Tipo:
   = text_field_tag nil, @product_product.product_type.description, class: "form-control", disabled: "disabled"
+- if @product_product.photos
+  .form-group    
+    .row
+      - @product_product.photos.each do |photo|
+        .col-2 style="height: 250px"
+          = image_tag(photo, class: "img-ctn" ,style: "width: 100%; height: 100%; padding: 5px; border: 1px solid red")
 
 => link_to 'Editar', edit_product_product_path(@product_product), id: "btn_editar", class: "btn btn-primary", style: "display: inline-block"
 =< link_to 'Voltar', product_products_path, id: "btn_voltar", class: "btn btn-primary", style: "display: inline-block"
