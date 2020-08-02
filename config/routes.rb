@@ -9,7 +9,15 @@ Rails.application.routes.draw do
       resources :types
       resources :categories
     end
-        
+  end
+
+  namespace :user do
+    #namespace :product do
+    scope module: 'product' do
+      resources :products
+      resources :types
+      resources :categories
+    end
   end
 
   namespace :home do
