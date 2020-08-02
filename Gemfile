@@ -41,9 +41,13 @@ gem 'tty-spinner'
 gem 'rails-i18n', '~> 5.1'
 gem 'slim-rails'
 gem 'devise'
+gem 'devise_token_auth'
 gem 'faker'
+gem 'omniauth'
 gem 'will_paginate'
-gem 'will_paginate-bootstrap' 
+gem 'will_paginate-bootstrap'
+gem 'breadcrumbs_on_rails'
+gem 'font-awesome-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

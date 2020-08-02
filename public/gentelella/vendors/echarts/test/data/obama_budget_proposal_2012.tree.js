@@ -1851,7 +1851,7 @@ window.obama_budget_2012 = [
                     10000,
                     1400
                 ],
-                "name": "Patient-Centered Outcomes Research Trust Fund",
+                "name": "User-Centered Outcomes Research Trust Fund",
                 "id": "leaf-498",
                 "discretion": "mandatory"
             },

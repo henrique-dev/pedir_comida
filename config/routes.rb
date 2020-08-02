@@ -1,30 +1,21 @@
 Rails.application.routes.draw do
-  
-  namespace :product do
-    resources :products
-  end
-  namespace :product do
-    resources :types
-  end
-  namespace :product do
-    resources :categories
-  end
-  namespace :home do
+  devise_for :admins
+  mount_devise_token_auth_for 'User', at: 'users/auth'  
+
+  scope module: 'admin' do
+    resources :user_profiles
     namespace :product do
-        end
+      resources :products
+      resources :types
+      resources :categories
+    end
+        
   end
-  namespace :home do
-    namespace :product do
-        end
-  end
-  namespace :home do
-    namespace :product do
-        end
-  end
+
   namespace :home do
     get 'admin/index'
   end
-  devise_for :admins
+  
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   get 'inicio', to: 'home/admin#index'

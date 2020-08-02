@@ -9,7 +9,7 @@
         other: Perfis
     attributes:
       product_products:
-        description: 'Descrição'
+        name: 'Descrição'
       admin:
         id: Código
         email: Email

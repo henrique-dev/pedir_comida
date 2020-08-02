@@ -28,5 +28,7 @@ module PedirComida
     # the framework and any gems in your application.
 
     config.generators.system_tests = nil
+
+    config.assets.paths << Rails.root.join("node_modules", "bootstrap", "fonts")
   end
 end

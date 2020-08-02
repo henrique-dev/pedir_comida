@@ -17,4 +17,5 @@ Rails.application.config.assets.precompile += %w(
     admin.css
 
     product/products.js
+    user_profiles.js
  )

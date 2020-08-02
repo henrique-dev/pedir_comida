@@ -1,0 +1,52 @@
+ul.breadcrumbs
+  li  
+    a href="#{product_products_path}"
+      | Pacientes
+    span.separator
+  li Mostrar
+
+div.x_panel
+  div.x_content
+    p#notice = notice
+
+    .row
+        .col-md-8
+          .form-group
+            label Nome:
+            = text_field_tag nil, @product_product.name, class: "form-control", disabled: "disabled"
+        .col-md-4
+          .form-group
+            label Preço:
+            = text_field_tag :price, @product_product.price, class: "form-control", disabled: "disabled"
+    .row
+      .col-md-12
+        .form-group
+          label Descrição:
+          = text_field_tag nil, @product_product.description, class: "form-control", disabled: "disabled"
+    .row
+      .col-md-6
+        .form-group
+          label Categoria:
+          = text_field_tag nil, @product_product.product_category.name, class: "form-control", disabled: "disabled"
+      .col-md-6
+        .form-group
+          label Tipo:
+          = text_field_tag nil, @product_product.product_type.name, class: "form-control", disabled: "disabled"    
+    - if @product_product.photos
+      .row
+        .col-md-12
+          .form-group    
+            .row
+              - @product_product.photos.each do |photo|
+                .col-2 style="height: 250px"
+                  = image_tag(photo, class: "img-ctn" ,style: "width: 100%; height: 100%; padding: 5px; border: 1px solid red")
+
+      => link_to 'Editar', edit_product_product_path(@product_product), id: "btn_editar", class: "btn btn-primary btn-sm", style: "display: inline-block"
+      =< link_to 'Voltar', product_products_path, id: "btn_voltar", class: "btn btn-secondary btn-sm", style: "display: inline-block"
+
+= javascript_include_tag "product/products"
+
+javascript:
+  jQuery(document).ready(function() {
+    jQuery("#price").applyRealMask();
+  });  

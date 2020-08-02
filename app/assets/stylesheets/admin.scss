@@ -3,9 +3,27 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 /*
  *= require bootstrap/dist/css/bootstrap
- *= require font-awesome/css/font-awesome
+ *= require font-awesome
  *= require nprogress/nprogress
  *= require malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar
  *= require gentelella
  *= require paginate
 */
+
+.breadcrumbs {
+    padding-left: 0;
+    display: block;
+}
+
+.breadcrumbs li {
+    display: inline;
+    font-weight: bold;
+}
+
+.breadcrumbs li a {
+    font-weight: normal !important;
+}
+
+.breadcrumbs li:before {
+    content: " / ";
+}
