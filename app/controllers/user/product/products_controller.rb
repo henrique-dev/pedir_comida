@@ -22,7 +22,7 @@ class User::Product::ProductsController < UserController
     # Use callbacks to share common setup or constraints between actions.
     def set_product_product
       @product = Product::Product.find(params[:id])
-      if params[:sub_id] && params[:sub_id] > 0
+      if params[:sub_id] && params[:sub_id].to_i > 0
         set_cart
         @product_from_cart = @cart.items.select {|i| i["product_id"] == params[:id].to_i && i["sub_id"] == params[:sub_id].to_i}
       end
