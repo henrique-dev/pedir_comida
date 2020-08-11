@@ -8,7 +8,7 @@
 
 (function($){
   $.fn.extend({
-      applyRealMask: function(options = {}) {
+      applyRealMask: function() {
         return this.each(function() {
           let value;
           if (this.tagName == "TD") {
