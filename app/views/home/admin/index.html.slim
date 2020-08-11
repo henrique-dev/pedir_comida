@@ -1,2 +1,11 @@
-h1 Home::Admin#index
-p Find me in app/views/home/admin/index.html.slim
+div.x_panel
+  div.x_content
+    div.row.table-responsive
+      table.table.table-striped.jambo_table.bulk_action
+        thead
+        tbody
+          - @orders.each do |order|
+            tr
+              td = order.id
+              td = link_to 'Confirmar', confirm_orders_path(:id => order.id), class: "btn btn-success btn-sm"
+        

@@ -10,5 +10,6 @@ class CreateUserProfiles < ActiveRecord::Migration[5.2]
     end
 
     add_reference :users, :user_profile, foreign_key: true
+    add_reference :addresses, :user_profile, foreign_key: true
   end
 end

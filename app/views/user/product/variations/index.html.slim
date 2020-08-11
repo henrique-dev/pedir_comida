@@ -1,0 +1,25 @@
+h1 Listing product_variations
+
+table
+  thead
+    tr
+      th Name
+      th Description
+      th Price
+      th
+      th
+      th
+
+  tbody
+    - @product_variations.each do |product_variation|
+      tr
+        td = product_variation.name
+        td = product_variation.description
+        td = product_variation.price
+        td = link_to 'Show', product_variation
+        td = link_to 'Edit', edit_product_variation_path(product_variation)
+        td = link_to 'Destroy', product_variation, data: { confirm: 'Are you sure?' }, method: :delete
+
+br
+
+= link_to 'New Variation', new_product_variation_path

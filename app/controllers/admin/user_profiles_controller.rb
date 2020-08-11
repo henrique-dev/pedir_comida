@@ -1,6 +1,11 @@
 class Admin::UserProfilesController < AdminController
-  before_action :set_user_profile, only: [:show, :edit, :update, :destroy]
+  before_action :set_user_profile, only: [:show, :edit, :update, :destroy, :send_confirmation_token]
   before_action :authenticate_admin!
+
+  def send_confirmation_token
+    @user.send_confirmation_token
+    redirect_to user_profiles_url
+  end
 
   # GET /user_profiles
   # GET /user_profiles.json
@@ -76,7 +81,6 @@ class Admin::UserProfilesController < AdminController
     def set_user_profile
       @user_profile = UserProfile.find(params[:id])
       @user = @user_profile.user
-      @address = @user_profile.address
     end
 
     # Only allow a list of trusted parameters through.

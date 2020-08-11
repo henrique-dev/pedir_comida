@@ -11,8 +11,9 @@ div.x_panel
             th.column-title Gênero          
             th.column-title Telefone
             th.column-title Email
-            th.column-title width="100px"
-            th.column-title width="100px"
+            th.column-title width="180px"
+            /th.column-title width="100px"
+            /th.column-title width="100px"
             th.column-title width="100px"
 
         tbody
@@ -22,7 +23,11 @@ div.x_panel
               td = user_profile.genre == "m" ? "Masculino" : "Feminino"
               td = user_profile.user.telephone
               td = user_profile.user.email
-              td = link_to 'Mostrar', user_profile, class: "btn btn-success btn-sm"
-              td = link_to 'Editar', edit_user_profile_path(user_profile), class: "btn btn-warning btn-sm"
+              - if !user_profile.user.confirmed?
+                td = link_to 'Enviar confirmação', send_confirmation_token_user_profiles_path(id: user_profile), class: "btn btn-success btn-sm"
+              - else
+                td
+              /td = link_to 'Mostrar', user_profile, class: "btn btn-success btn-sm"
+              /td = link_to 'Editar', edit_user_profile_path(user_profile), class: "btn btn-warning btn-sm"
               td = link_to 'Excluir', user_profile, data: { confirm: 'Are you sure?' }, method: :delete, class: "btn btn-danger btn-sm"
       = my_will_paginate(@medic_profiles).html_safe

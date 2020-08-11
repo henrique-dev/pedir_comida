@@ -1,11 +1,16 @@
 class User::Product::ProductsController < UserController
   before_action :set_product_product, only: [:show, :edit, :update, :destroy]
+  before_action :set_cart
 
   # GET /product/products
   # GET /product/products.json
   def index
-    #@product_products = Product::Product.all
-    @products = Product::Product.all.order(created_at: :desc).paginate(:page => params[:page], :per_page => 10)
+    if params[:category]
+      @products = Product::Product.where(product_category_id: params[:category])
+    else
+      @products = Product::Product.all      
+    end    
+    #@products = Product::Product.all.order(created_at: :desc).paginate(:page => params[:page], :per_page => 10)
   end
 
   # GET /product/products/1
@@ -16,15 +21,11 @@ class User::Product::ProductsController < UserController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_product_product
-      @product_product = Product::Product.find(params[:id])
-    end
-
-    def set_product_categories
-      @product_categories = Product::Category.all.pluck(:name, :id)
-    end
-  
-    def set_product_types
-      @product_types = Product::Type.all.pluck(:name, :id)
+      @product = Product::Product.find(params[:id])
+      if params[:sub_id]
+        set_cart
+        @product_from_cart = @cart.items.select {|i| i["product_id"] == params[:id].to_i && i["sub_id"] == params[:sub_id].to_i}
+      end
     end
 
     # Only allow a list of trusted parameters through.

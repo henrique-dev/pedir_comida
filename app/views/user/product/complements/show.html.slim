@@ -1,0 +1,15 @@
+p#notice = notice
+
+p
+  strong Name:
+  = @product_complement.name
+p
+  strong Description:
+  = @product_complement.description
+p
+  strong Price:
+  = @product_complement.price
+
+=> link_to 'Edit', edit_product_complement_path(@product_complement)
+'|
+=< link_to 'Back', product_complements_path

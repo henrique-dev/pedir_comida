@@ -9,7 +9,7 @@
     <div class="animate form login_form">
       <section class="login_content">
         <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-          <h1>Login Form</h1>
+          <h1 style="color: white">Login</h1>
 
           <div>            
             <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", placeholder: "Usuário" %>
@@ -19,8 +19,8 @@
             <%= f.password_field :password, autocomplete: "current-password", class:"form-control", placeholder: "Senha"%>
           </div>
 
-          <div class="actions">
-            <%= f.submit "Log in", class: "btn btn-default submit" %>
+          <div>
+            <%= f.submit "Entrar", class: "btn btn-danger", style: "width: 100%; margin: 0; color: white" %>
           </div>
 
           <div class="clearfix"></div>
@@ -28,12 +28,7 @@
           <div class="separator">            
 
             <div class="clearfix"></div>
-            <br />
-
-            <div>
-              <h1><i class="fa fa-paw"></i> Gentelella Alela!</h1>
-              <p>©2016 All Rights Reserved. Gentelella Alela! is a Bootstrap 3 template. Privacy and Terms</p>
-            </div>
+            <br />            
           </div>
 
         <% end %>        

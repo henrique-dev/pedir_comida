@@ -1,0 +1,2 @@
+module Product::ComplementsHelper
+end

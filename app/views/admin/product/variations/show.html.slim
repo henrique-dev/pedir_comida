@@ -1,0 +1,15 @@
+p#notice = notice
+
+p
+  strong Name:
+  = @product_variation.name
+p
+  strong Description:
+  = @product_variation.description
+p
+  strong Price:
+  = @product_variation.price
+
+=> link_to 'Edit', edit_product_variation_path(@product_variation)
+'|
+=< link_to 'Back', product_variations_path

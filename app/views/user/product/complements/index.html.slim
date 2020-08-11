@@ -1,0 +1,25 @@
+h1 Listing product_complements
+
+table
+  thead
+    tr
+      th Name
+      th Description
+      th Price
+      th
+      th
+      th
+
+  tbody
+    - @product_complements.each do |product_complement|
+      tr
+        td = product_complement.name
+        td = product_complement.description
+        td = product_complement.price
+        td = link_to 'Show', product_complement
+        td = link_to 'Edit', edit_product_complement_path(product_complement)
+        td = link_to 'Destroy', product_complement, data: { confirm: 'Are you sure?' }, method: :delete
+
+br
+
+= link_to 'New Complement', new_product_complement_path
