@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-DEFAULT_PASSWORD_ADMIN = '123456'
+DEFAULT_PASSWORD_ADMIN = 'ZXDas7966PHD26@@head2020'
 DEFAULT_PASSWORD_USER = '123456'
 GENRES = ["m", "f"]
 
@@ -76,11 +76,11 @@ Faker::UniqueGenerator.clear
 end
 
 user = User.create!(
-    telephone: "969911004243",
-    password: DEFAULT_PASSWORD_ADMIN, 
-    password_confirmation: DEFAULT_PASSWORD_ADMIN,
+    telephone: "96991100443",
+    password: DEFAULT_PASSWORD_USER, 
+    password_confirmation: DEFAULT_PASSWORD_USER,
     #email: Faker::Internet.email,
-    uid: "969911004243",
+    uid: "96991100443",
     provider: "telephone",
     created_by_admin: true,
     name: Faker::Name.name,
@@ -142,8 +142,8 @@ cart = Cart.create!(
 10.times do |i|
     user = User.create!(
         telephone: Faker::PhoneNumber.cell_phone_in_e164,
-        password: DEFAULT_PASSWORD_ADMIN, 
-        password_confirmation: DEFAULT_PASSWORD_ADMIN,
+        password: DEFAULT_PASSWORD_USER, 
+        password_confirmation: DEFAULT_PASSWORD_USER,
         email: Faker::Internet.email,
         provider: "email",
         created_by_admin: true,
