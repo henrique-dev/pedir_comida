@@ -11,7 +11,7 @@ DEFAULT_PASSWORD_USER = '123456'
 GENRES = ["m", "f"]
 
 #User.create!(email: 'user@user.com', password: DEFAULT_PASSWORD_USER, password_confirmation: DEFAULT_PASSWORD_USER)
-Admin.create!(email: 'admin@admin.com', password: DEFAULT_PASSWORD_USER, password_confirmation: DEFAULT_PASSWORD_USER)
+Admin.create!(email: 'admin@admin.com', password: DEFAULT_PASSWORD_ADMIN, password_confirmation: DEFAULT_PASSWORD_ADMIN)
 
 10.times do |i|
     Admin.create!(
