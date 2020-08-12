@@ -17,6 +17,7 @@ class User::AddressesController < UserController
 
   def create    
     @address = Address.new(address_params.merge({user_profile_id: current_user.user_profile_id}))
+    @address.default = false
     @address.default = true if Address.where(user_profile_id: current_user.user_profile_id).count == 0
     if @address.save
       render :show, status: :created

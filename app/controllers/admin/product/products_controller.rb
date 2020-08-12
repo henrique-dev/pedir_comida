@@ -7,7 +7,8 @@ class Admin::Product::ProductsController < AdminController
   # GET /product/products.json
   def index
     #@product_products = Product::Product.all
-    @product_products = Product::Product.all.order(created_at: :desc).paginate(:page => params[:page], :per_page => 10)
+    @product_products = Product::Product.all.order(updated_at: :desc).paginate(:page => params[:page], :per_page => 10)
+    #@product_products = Product::Product.all.paginate(:page => params[:page], :per_page => 10)
   end
 
   # GET /product/products/1

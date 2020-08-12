@@ -20,6 +20,7 @@ Rails.application.routes.draw do
       collection do
         #post :confirm
         get :confirm
+        post :set_status
       end
     end
 
@@ -47,7 +48,7 @@ Rails.application.routes.draw do
 
     resources :carts do
       collection do        
-        post :add, :update_item, :remove, :checkout
+        post :add, :update_item, :remove, :checkout, :repurchase
       end  
     end
 

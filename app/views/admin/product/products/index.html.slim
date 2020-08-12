@@ -9,6 +9,7 @@ div.x_panel
       table.table.table-striped.jambo_table.bulk_action
         thead
           tr
+            th Id
             th Descrição
             th Sobre
             th Preço
@@ -21,6 +22,7 @@ div.x_panel
         tbody
           - @product_products.each do |product_product|
             tr
+              td = product_product.id
               td = product_product.name
               td = product_product.description
               td.td-price = product_product.price

@@ -5,7 +5,8 @@ if @only_total
 else
     json.addresses @addresses
     json.sub_total @cart.total
-    json.tax 0
+    json.tax 10
+    json.taxes @cart.taxes
     json.total @cart.total
     json.items @cart.products.to_json(methods: [:sub_id, :quantity, :complements, :ingredients, :variations])
     json.payments @payments

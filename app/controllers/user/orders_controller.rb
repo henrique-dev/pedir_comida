@@ -12,10 +12,10 @@ class User::OrdersController < UserController
         @cart = Cart.find_by(user_profile_id: current_user.user_profile_id)
         if @cart.locked
           @current_order = @cart.order_checkout
-          @old_orders = Order.where(user_profile_id: current_user.user_profile_id)
+          @old_orders = Order.where(user_profile_id: current_user.user_profile_id).order(created_at: :desc)
         else
           @current_order = nil
-          @old_orders = Order.where(user_profile_id: current_user.user_profile_id)
+          @old_orders = Order.where(user_profile_id: current_user.user_profile_id).order(created_at: :desc)
         end
       else
         @cart = Cart.new

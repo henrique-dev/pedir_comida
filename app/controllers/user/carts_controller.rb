@@ -1,5 +1,6 @@
 class User::CartsController < UserController  
   before_action :set_cart, only: [:show, :add, :update_item, :remove, :checkout]
+  before_action :set_only_cart, only: [:repurchase]
 
   def add    
     success = @cart.add(cart_params)
@@ -25,12 +26,30 @@ class User::CartsController < UserController
     render json: {:status => status}
   end
 
+  def repurchase
+    success = @cart.repurchase(order_params[:id])
+    if (success[:success])
+      @cart.save
+    end
+    render json: success
+  end
+
   def checkout
-    render json: {:status => @cart.checkout(checkout_params)}
+    status = @cart.checkout(checkout_params)
+    ActionCable.server.broadcast "admin_1",
+    { 
+      category: "checkout",
+      message: @cart.order_checkout.to_json(methods: [:cart]),
+    }
+    render json: {:status => status}
   end
 
   private
   # Use callbacks to share common setup or constraints between actions.
+  def set_only_cart
+    @cart = Cart.find_by(user_profile_id: current_user.user_profile_id)
+  end
+
   def set_cart
     if current_user
       @cart = Cart.find_by(user_profile_id: current_user.user_profile_id)
@@ -54,5 +73,9 @@ class User::CartsController < UserController
 
   def checkout_params
     params.require(:checkout).permit(:address_id, :payment_type, :payment_id)
+  end
+
+  def order_params
+    params.require(:order).permit(:id)
   end
 end

@@ -68,6 +68,7 @@ ActiveRecord::Schema.define(version: 2020_08_02_175941) do
     t.json "items"
     t.boolean "locked", default: false
     t.integer "sub_id_increment", default: 1
+    t.integer "current_address_id"
     t.bigint "user_profile_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

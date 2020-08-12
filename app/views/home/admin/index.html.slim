@@ -1,11 +1,139 @@
-div.x_panel
-  div.x_content
-    div.row.table-responsive
-      table.table.table-striped.jambo_table.bulk_action
-        thead
-        tbody
-          - @orders.each do |order|
-            tr
-              td = order.id
-              td = link_to 'Confirmar', confirm_orders_path(:id => order.id), class: "btn btn-success btn-sm"
+div.row  
+  div.col-md-3
+    div.x_panel
+      div.x_content
+        h2 Novos pedidos
+        div.row.table-responsive style="max-height: 80vh; margin: 0"
+          table.table.table-striped.jambo_table.bulk_action id="tbl_orders_waiting"
+            thead
+              tr
+                th Id
+                th width="110px" Valor
+                th width="110px" Ação
+            tbody
+              - if @orders_waiting_confirmation.count > 0
+                - @orders_waiting_confirmation.each do |order|
+                  tr.tr-order
+                    td = order.id
+                    td.td-price = order.cart.total
+                    td = link_to 'Mostrar', home_admin_index_path(:see_id => order.id), class: "btn btn-success btn-sm"
+              - else
+                tr
+                  td colspan="3" Sem pedidos
+  div.col-md-3
+    div.x_panel
+      div.x_content
+        h2 Pedidos confirmados
+        div.row.table-responsive style="max-height: 80vh; margin: 0"
+          table.table.table-striped.jambo_table.bulk_action
+            thead
+              tr
+                th Id
+                th width="110px" Status
+                th width="110px" Ação
+            tbody
+              - if @orders.count > 0
+                - @orders.each do |order|
+                  - if ["confirmed", "in_production", "waiting_deliveryman", "sent", "done"].include?(order.status)
+                    tr
+                      td = order.id
+                      td = order.status
+                      td = link_to 'Mostrar', home_admin_index_path(:see_id => order.id), class: "btn btn-success btn-sm"
+              - else
+                tr
+                  td colspan="3" Sem pedidos
+  div.col-md-6
+    div.x_panel
+      div.x_content
+        - if @order
+          h2 Pedido #
+          div class="card"
+            div class="card-body" style="background: #405467; color: white"
+              h5 class="card-title" Cliente: #{@order.user_profile.name}
+              p class="card-text" Entregar em: #{@order.address.street}, #{@order.address.number}, #{@order.address.neighborhood}            
+            div class="card-body border" style="margin-right: 0; padding-right: 0; background: #f2f2f2"
+              h5 Itens:
+              div style="max-height: calc(31vh + 3px); margin: 0; overflow-y: auto; background: #f2f2f2"
+                ul class="list-group list-group-flush"
+                  - @order.cart.products.each do |item|
+                    li class="list-group-item" style="background: #f2f2f2"
+                      h5 #{item.quantity} x #{item.name}
+                      div style="padding-left: 20px"
+                        - if item.complements.count > 0
+                          h4
+                            strong Complementos
+                            ul
+                              - item.complements.each do |complement|
+                                li = complement.name
+                        - if item.ingredients.count > 0
+                          h4
+                            strong Retirar ingredientes
+                            ul
+                              - item.ingredients.each do |ingredient|
+                                li = ingredient.name
+                        - if item.variations.count > 0
+                          h4
+                            strong Variações
+                            ul
+                              - item.variations.each do |variation|
+                                li = variation.name
+            div style="text-align: right; background: #f2f2f2"                  
+              table.table style="padding: 0"
+                tbody
+                  tr
+                    td width="15px" style="margin-bottom: 0; padding-bottom: 0"
+                      h5 SubTotal:
+                      br
+                      h5 Frete:
+                    td width="10px" style="margin-bottom: 0; padding-bottom: 0"
+                      h5.td-price #{@order.cart.total}
+                      br
+                      h5.td-price #{0}
+                  tr
+                    td width="15px" style="margin-bottom: 0; padding-bottom: 0"
+                      h5 Total:
+                    td width="10px" style="margin-bottom: 0; padding-bottom: 0"
+                      h5.td-price #{@order.cart.total}
+
+            div class="card-body" style="margin-top: 0; padding-top: 0; background: #f2f2f2"
+              = form_for @order, url: set_status_orders_path(:id => @order.id) do |f|
+                = f.text_field :id, class: "form-control", hidden: "hidden", value: "#{@order.id}"
+                = f.text_field :status, class: "form-control", hidden: "hidden", value: "confirmed"
+                - if @order.status == "waiting_confirmation"
+                  .row style="text-align: right"
+                    .col-md-12
+                      .actions = f.submit "Confirmar", class: "btn btn-success"
+                - else
+                  .row style="text-align: right"
+                    .col-md-8
+                    .col-md-4
+                      .form-group
+                        = f.label "Mudar status"
+                        = f.select("status", @list_status, {include_blank: false}, class: "form-control")
+                  .row style="text-align: right"
+                    .col-md-12
+                      .actions = f.submit "Mudar", class: "btn btn-success"
+        - else
+          h2 Sem pedidos
         
+= javascript_include_tag "product/products"
+
+javascript:
+
+  var currentOrderId = "#{@order ? @order.id : 0}";
+
+  jQuery(document).ready(function() {
+    jQuery(".td-price").applyRealMask();
+
+    jQuery("#select_order_status").change(function() {
+      let value = jQuery(this).val();
+      
+      jQuery.post( "#{set_status_orders_path}", {id: currentOrderId, status: value}, function( dadosRecebidos ) {      
+          
+      }, "json").fail(function(e) {
+          alert("Ocorreu um erro durante este processo. Entre em contato com nossa equipe no suporte on-line.");
+      });
+
+
+    });
+  });

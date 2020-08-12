@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>TimeToAnswer</title>
+    <title>Pedir Comida</title>
 
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -23,7 +23,7 @@
         <div class="col-md-3 left_col menu_fixed">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Gentelella Alela!</span></a>
+              <a href="<%= home_admin_index_path%>" class="site_title"><span>Pedir Comida</span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -44,17 +44,18 @@
 
             <!-- sidebar menu -->
             <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
-              <div class="menu_section">
+              <div class="menu_section">                
                 <h3>Geral</h3>
                 <ul class="nav side-menu">
-                  <li><a><i class="fa fa-home"></i> Produtos <span class="fa fa-chevron-down"></span></a>
+                  <li><a href="<%= home_admin_index_path%>"><i class="fa fa-shopping-cart"></i> Pedidos</i></a></li>
+                  <li><a><i class="fa fa-cutlery"></i> Produtos <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><%= link_to "Produtos", product_products_path %></li>
                       <li><%= link_to "Categorias", product_categories_path %></li>
                       <li><%= link_to "Tipos", product_types_path %></li>
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-home"></i> Usuários <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-users"></i> Usuários <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><%= link_to "Usuários", user_profiles_path %></li>
                     </ul>
@@ -66,18 +67,7 @@
 
             <!-- /menu footer buttons -->
             <div class="sidebar-footer hidden-small">
-              <a data-toggle="tooltip" data-placement="top" title="Settings">
-                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-              </a>
-              <a data-toggle="tooltip" data-placement="top" title="FullScreen">
-                <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
-              </a>
-              <a data-toggle="tooltip" data-placement="top" title="Lock">
-                <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
-              </a>
-              <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
-                <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
-              </a>
+              
             </div>
             <!-- /menu footer buttons -->
           </div>
@@ -179,15 +169,6 @@
           </div>
         </div>
         <!-- /page content -->
-
-        <!-- footer content -->
-        <footer>
-          <div class="pull-right">
-            Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
-          </div>
-          <div class="clearfix"></div>
-        </footer>
-        <!-- /footer content -->
       </div>
     </div>
 

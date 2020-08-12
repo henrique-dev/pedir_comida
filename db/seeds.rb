@@ -9,6 +9,7 @@
 DEFAULT_PASSWORD_ADMIN = 'ZXDas7966PHD26@@head2020'
 DEFAULT_PASSWORD_USER = '123456'
 GENRES = ["m", "f"]
+BAIRROS = ["Alvorada", "Araxá", "Beirol", "Boné Azul", "Brasil Novo", "Buritizal", "Cabralzinho", "Central", "Cidade Nova", "Congós", "Infraero", "Jardim Equatorial", "Jardim Felicidade", "Jesus de Nazaré", "Laguinho", "Marco Zero", "Nova Esperança", "Novo Buritizal", "Novo Horizonte", "Pacoval", "Pedrinhas", "Perpétuo Socorro", "Santa Inês", "Santa Rita", "São Lázaro", "Trem", "Universidade", "Zerão"]
 
 #User.create!(email: 'user@user.com', password: DEFAULT_PASSWORD_USER, password_confirmation: DEFAULT_PASSWORD_USER)
 Admin.create!(email: 'admin@admin.com', password: DEFAULT_PASSWORD_ADMIN, password_confirmation: DEFAULT_PASSWORD_ADMIN)
@@ -101,7 +102,7 @@ default_address = false
         state: Faker::Address.state,
         country: Faker::Address.country,
         city: Faker::Address.city,
-        neighborhood: Faker::Address.community,
+        neighborhood: BAIRROS.sample,
         default: (!default_address ? true : false),
         user_profile: user_profile
     )
@@ -163,7 +164,7 @@ cart = Cart.create!(
         state: Faker::Address.state,
         country: Faker::Address.country,
         city: Faker::Address.city,
-        neighborhood: Faker::Address.community,
+        neighborhood: BAIRROS.sample,
         default: true,
         user_profile: user_profile
     )
