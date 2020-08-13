@@ -1,4 +1,5 @@
 class User::Product::CategoriesController < UserController
+  skip_before_action :authenticate_user!, only: [:index]
   before_action :set_cart
 
   def index

@@ -1,4 +1,5 @@
 class User::Product::ProductsController < UserController
+  skip_before_action :authenticate_user!, only: [:index, :show]
   before_action :set_product_product, only: [:show, :edit, :update, :destroy]
   before_action :set_cart
 

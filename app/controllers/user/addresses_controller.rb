@@ -1,6 +1,5 @@
 class User::AddressesController < UserController
   before_action :set_address, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!
 
   def index
     @addresses = Address.where(user_profile_id: current_user.user_profile_id)
