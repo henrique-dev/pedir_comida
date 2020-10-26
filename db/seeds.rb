@@ -83,6 +83,7 @@ user = User.create!(
     #email: Faker::Internet.email,
     uid: "96991100443",
     provider: "telephone",
+    confirmed_at: DateTime.now,
     created_by_admin: true,
     name: Faker::Name.name,
     genre: GENRES[[0,1].sample],

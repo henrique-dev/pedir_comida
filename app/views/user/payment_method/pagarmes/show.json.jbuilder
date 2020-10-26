@@ -1,0 +1,1 @@
+json.partial! "user/payment_method/pagarmes/pagarme", pagarme: @pagarme

@@ -100,6 +100,26 @@ ActiveRecord::Schema.define(version: 2020_08_02_175941) do
     t.index ["user_profile_id"], name: "index_orders_on_user_profile_id"
   end
 
+  create_table "payment_pagarmes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "payment_type", default: ""
+    t.string "payment_type2", default: ""
+    t.string "payment_type3", default: ""
+    t.string "name", default: ""
+    t.string "description", default: ""
+    t.string "sub_description", default: ""
+    t.string "sub_description2", default: ""
+    t.string "card_id", default: ""
+    t.string "brand", default: ""
+    t.string "holder_name", default: ""
+    t.string "payment_observation", default: ""
+    t.string "observation", default: ""
+    t.boolean "default", default: false
+    t.bigint "payment_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["payment_id"], name: "index_payment_pagarmes_on_payment_id"
+  end
+
   create_table "payment_physicals", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "payment_type", default: ""
     t.string "payment_type2", default: ""
@@ -228,6 +248,7 @@ ActiveRecord::Schema.define(version: 2020_08_02_175941) do
   add_foreign_key "checkouts", "user_profiles"
   add_foreign_key "orders", "addresses"
   add_foreign_key "orders", "user_profiles"
+  add_foreign_key "payment_pagarmes", "payments"
   add_foreign_key "payment_physicals", "payments"
   add_foreign_key "payments", "user_profiles"
   add_foreign_key "product_complements", "product_products"

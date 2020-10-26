@@ -3,15 +3,6 @@ module ApplicationCable
     identified_by :current_user, :current_admin
 
     def connect
-      puts "HEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEERE".red
-      puts "HEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEERE".red
-      puts "HEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEERE".red
-      puts "HEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEERE".red
-      puts "HEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEERE".red
-      puts "HEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEERE".red
-      puts "HEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEERE".red
-      p cookies.signed[:admin_id]
-      
       if cookies.signed[:admin_id]
         self.current_admin = find_verified_admin cookies.signed[:admin_id]
         logger.add_tags 'ActionCable', current_admin.id

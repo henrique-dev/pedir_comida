@@ -52,6 +52,10 @@ Rails.application.routes.draw do
       end  
     end
 
+    scope module: 'payment_method' do
+      resources :pagarmes
+    end
+
     scope module: 'product' do
       resources :products
       resources :types

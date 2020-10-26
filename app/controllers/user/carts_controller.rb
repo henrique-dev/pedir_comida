@@ -59,7 +59,9 @@ class User::CartsController < UserController
         @only_total = false
         @cart.load_products
         @addresses = current_user.user_profile.addresses
-        @payments = current_user.user_profile.payment.payment_physicals
+        @payments = []
+        @payments += current_user.user_profile.payment.payment_physicals
+        @payments += current_user.user_profile.payment.payment_pagarmes
       end
     else
       @cart = Cart.new
